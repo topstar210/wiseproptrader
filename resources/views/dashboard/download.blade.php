@@ -21,8 +21,8 @@
                                     <img src="https://cdn.ftmo.com/pdf.svg" style="height: 50px">
                                 </div>
                                 <div class="px-3">
-                                    <span>How To Receive FTMO Account?</span> <br>
-                                    <span>Find out how to become FTMO Trader.</span>
+                                    <span>How To Receive Wiseprop Account?</span> <br>
+                                    <span>Find out how to become Wiseprop Trader.</span>
                                 </div>
                             </div>
                             <a href="https://cdn.ftmo.com/ebook-how-to-receive-ftmo.pdf" title="Download" class="col-2 d-flex align-items-center justify-content-end pe-3" target="_blank">
@@ -41,8 +41,8 @@
                                     <img src="https://cdn.ftmo.com/pdf.svg" style="height: 50px">
                                 </div>
                                 <div class="px-3">
-                                    <span>How To Receive FTMO Account?</span> <br>
-                                    <span>Find out how to become FTMO Trader.</span>
+                                    <span>How To Receive Wiseprop Account?</span> <br>
+                                    <span>Find out how to become Wiseprop Trader.</span>
                                 </div>
                             </div>
                             <a href="https://cdn.ftmo.com/ebook-how-to-receive-ftmo.pdf" title="Download" class="col-2 d-flex align-items-center justify-content-end pe-3" target="_blank">
@@ -61,8 +61,8 @@
                                     <img src="https://cdn.ftmo.com/pdf.svg" style="height: 50px">
                                 </div>
                                 <div class="px-3">
-                                    <span>How To Receive FTMO Account?</span> <br>
-                                    <span>Find out how to become FTMO Trader.</span>
+                                    <span>How To Receive Wiseprop Account?</span> <br>
+                                    <span>Find out how to become Wiseprop Trader.</span>
                                 </div>
                             </div>
                             <a href="https://cdn.ftmo.com/ebook-how-to-receive-ftmo.pdf" title="Download" class="col-2 d-flex align-items-center justify-content-end pe-3" target="_blank">
@@ -81,8 +81,8 @@
                                     <img src="https://cdn.ftmo.com/pdf.svg" style="height: 50px">
                                 </div>
                                 <div class="px-3">
-                                    <span>How To Receive FTMO Account?</span> <br>
-                                    <span>Find out how to become FTMO Trader.</span>
+                                    <span>How To Receive Wiseprop Account?</span> <br>
+                                    <span>Find out how to become Wiseprop Trader.</span>
                                 </div>
                             </div>
                             <a href="https://cdn.ftmo.com/ebook-how-to-receive-ftmo.pdf" title="Download" class="col-2 d-flex align-items-center justify-content-end pe-3" target="_blank">
@@ -105,7 +105,7 @@
                                     <img src="https://cdn.ftmo.com/zip.svg" style="height: 50px">
                                 </div>
                                 <div class="px-3">
-                                    <span>Printable FTMO Posters</span>
+                                    <span>Printable Wiseprop Posters</span>
                                 </div>
                             </div>
                             <div class="col-4 d-flex align-items-center justify-content-end pe-3">
@@ -155,7 +155,7 @@
                                     <img src="https://cdn.ftmo.com/zip.svg" style="height: 50px">
                                 </div>
                                 <div class="px-3">
-                                    <span>Printable FTMO Posters</span>
+                                    <span>Printable Wiseprop Posters</span>
                                 </div>
                             </div>
                             <a href="https://cdn.ftmo.com/ebook-how-to-receive-ftmo.pdf" title="Download" class="col-2 d-flex align-items-center justify-content-end pe-3" target="_blank">
@@ -174,7 +174,7 @@
                                     <img src="https://cdn.ftmo.com/zip.svg" style="height: 50px">
                                 </div>
                                 <div class="px-3">
-                                    <span>Printable FTMO Posters</span>
+                                    <span>Printable Wiseprop Posters</span>
                                 </div>
                             </div>
                             <a href="https://cdn.ftmo.com/ebook-how-to-receive-ftmo.pdf" title="Download" class="col-2 d-flex align-items-center justify-content-end pe-3" target="_blank">
@@ -193,7 +193,7 @@
                                     <img src="https://cdn.ftmo.com/zip.svg" style="height: 50px">
                                 </div>
                                 <div class="px-3">
-                                    <span>Printable FTMO Posters</span>
+                                    <span>Printable Wiseprop Posters</span>
                                 </div>
                             </div>
                             <a href="https://cdn.ftmo.com/ebook-how-to-receive-ftmo.pdf" title="Download" class="col-2 d-flex align-items-center justify-content-end pe-3" target="_blank">
@@ -216,7 +216,7 @@
                                     <img src="https://cdn.ftmo.com/zip.svg" style="height: 50px">
                                 </div>
                                 <div class="px-3">
-                                    <span>Printable FTMO Posters</span>
+                                    <span>Printable Wiseprop Posters</span>
                                 </div>
                             </div>
                             <a href="https://cdn.ftmo.com/ebook-how-to-receive-ftmo.pdf" title="Download" class="col-2 d-flex align-items-center justify-content-end pe-3" target="_blank">
@@ -235,7 +235,7 @@
                                     <img src="https://cdn.ftmo.com/zip.svg" style="height: 50px">
                                 </div>
                                 <div class="px-3">
-                                    <span>Printable FTMO Posters</span>
+                                    <span>Printable Wiseprop Posters</span>
                                 </div>
                             </div>
                             <a href="https://cdn.ftmo.com/ebook-how-to-receive-ftmo.pdf" title="Download" class="col-2 d-flex align-items-center justify-content-end pe-3" target="_blank">
@@ -254,7 +254,7 @@
                                     <img src="https://cdn.ftmo.com/zip.svg" style="height: 50px">
                                 </div>
                                 <div class="px-3">
-                                    <span>Printable FTMO Posters</span>
+                                    <span>Printable Wiseprop Posters</span>
                                 </div>
                             </div>
                             <a href="https://cdn.ftmo.com/ebook-how-to-receive-ftmo.pdf" title="Download" class="col-2 d-flex align-items-center justify-content-end pe-3" target="_blank">
@@ -273,7 +273,7 @@
                                     <img src="https://cdn.ftmo.com/zip.svg" style="height: 50px">
                                 </div>
                                 <div class="px-3">
-                                    <span>Printable FTMO Posters</span>
+                                    <span>Printable Wiseprop Posters</span>
                                 </div>
                             </div>
                             <a href="https://cdn.ftmo.com/ebook-how-to-receive-ftmo.pdf" title="Download" class="col-2 d-flex align-items-center justify-content-end pe-3" target="_blank">
