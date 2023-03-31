@@ -84,6 +84,7 @@
                                                     <li class="list-unstyled mb-3"><button class="btn btn-sm btn-success" onclick="verifyID()">Verify ID</button></li>
                                                 @endif
                                                 <li><a href="{{ route('home') }}">Dashboard</a></li>
+                                                <li><a href="{{ route('dash_client_area') }}">Dashboard-1</a></li>
                                                 <li><a href="{{ route('profile') }}">Profile</a></li>
                                                 @if($is_admin)
                                                     <li><a href="{{ url('admin') }}">Admin</a></li>

@@ -857,8 +857,8 @@ function showOrder() {
                                 },
                             });
                         }
-                        setInterval(getDataSocket, 100);
-                        setInterval(getData, 1000);
+                        // setInterval(getDataSocket, 100);
+                        // setInterval(getData, 1000);
                     } else {
                         status = "<span class='text-warning'>CLOSED</span>";
                         close = "";
@@ -1449,111 +1449,111 @@ function showOtherTradingData(otherData, secs) {
         smplOtherData.push({key, element});
     }
     let i = 0;
-    setInterval(function () {
-        let forexPair = '';
-        if (smplOtherData[i].element.type == 'IG') {
-            forexPair = smplOtherData[i].element.base_forex_instruments;
-        } else {
-            forexPair = smplOtherData[i].element.base_forex_instruments + "/" + smplOtherData[i].element.quote_forex_instruments;
-        }
-        let key = smplOtherData[i].key;
-        $.ajax({
-            type: "get",
-            enctype: "multipart/form-data",
-            url: base_url + "/showForexTradingData",
-            data: { forexPair: forexPair, id: key },
+    // setInterval(function () {
+    //     let forexPair = '';
+    //     if (smplOtherData[i].element.type == 'IG') {
+    //         forexPair = smplOtherData[i].element.base_forex_instruments;
+    //     } else {
+    //         forexPair = smplOtherData[i].element.base_forex_instruments + "/" + smplOtherData[i].element.quote_forex_instruments;
+    //     }
+    //     let key = smplOtherData[i].key;
+    //     $.ajax({
+    //         type: "get",
+    //         enctype: "multipart/form-data",
+    //         url: base_url + "/showForexTradingData",
+    //         data: { forexPair: forexPair, id: key },
 
-            success: function (data) {
-                if (!data.hasOwnProperty('id'))  return;
-                let id = data.id;
-                let bids = data.bids;
-                let old_bids = $("#other_sell_" + key).text();
-                let asks = data.asks;
-                let old_asks = $("#other_buy_" + key).text();
-                let closeoutBid = data.closeoutBid;
-                let closeoutAsk = data.closeoutAsk;
+    //         success: function (data) {
+    //             if (!data.hasOwnProperty('id'))  return;
+    //             let id = data.id;
+    //             let bids = data.bids;
+    //             let old_bids = $("#other_sell_" + key).text();
+    //             let asks = data.asks;
+    //             let old_asks = $("#other_buy_" + key).text();
+    //             let closeoutBid = data.closeoutBid;
+    //             let closeoutAsk = data.closeoutAsk;
 
-                let bid_change_rate =
-                    ((bids - closeoutBid) / closeoutBid) * 10000;
-                let ask_change_rate =
-                    ((asks - closeoutAsk) / closeoutAsk) * 10000;
-                let total_change_rate = ((asks - bids) / bids) * 100;
-                total_change_rate = parseFloat(total_change_rate.toFixed(2));
-                if ((total_change_rate * 1000) % 2 < 1) {
-                    total_change_rate = total_change_rate * -1;
-                }
-                // console.log(total_change_rate * 1000 % 2);
-                let forex_change_rate = "";
-                if (isNaN(total_change_rate)) {
-                    forex_change_rate = "0.00%";
-                }
-                // console.log("change_rate=>", total_change_rate);
+    //             let bid_change_rate =
+    //                 ((bids - closeoutBid) / closeoutBid) * 10000;
+    //             let ask_change_rate =
+    //                 ((asks - closeoutAsk) / closeoutAsk) * 10000;
+    //             let total_change_rate = ((asks - bids) / bids) * 100;
+    //             total_change_rate = parseFloat(total_change_rate.toFixed(2));
+    //             if ((total_change_rate * 1000) % 2 < 1) {
+    //                 total_change_rate = total_change_rate * -1;
+    //             }
+    //             // console.log(total_change_rate * 1000 % 2);
+    //             let forex_change_rate = "";
+    //             if (isNaN(total_change_rate)) {
+    //                 forex_change_rate = "0.00%";
+    //             }
+    //             // console.log("change_rate=>", total_change_rate);
 
-                let tradeable = data.tradeable;
-                if (tradeable) {
-                    $("#star_image_" + key).attr(
-                        "src",
-                        base_url + "/landingAssets/images/1-circle.svg"
-                    );
-                    $("#other_sell_" + key).parent().attr('disabled', false);
-                    $("#other_buy_" + key).parent().attr('disabled', false);
-                } else {
-                    $("#star_image_" + key).attr(
-                        "src",
-                        base_url + "/landingAssets/images/0-circle.svg"
-                    );
-                    $("#other_sell_" + key).parent().attr('disabled', true);
-                    $("#other_buy_" + key).parent().attr('disabled', true);
-                }
+    //             let tradeable = data.tradeable;
+    //             if (tradeable) {
+    //                 $("#star_image_" + key).attr(
+    //                     "src",
+    //                     base_url + "/landingAssets/images/1-circle.svg"
+    //                 );
+    //                 $("#other_sell_" + key).parent().attr('disabled', false);
+    //                 $("#other_buy_" + key).parent().attr('disabled', false);
+    //             } else {
+    //                 $("#star_image_" + key).attr(
+    //                     "src",
+    //                     base_url + "/landingAssets/images/0-circle.svg"
+    //                 );
+    //                 $("#other_sell_" + key).parent().attr('disabled', true);
+    //                 $("#other_buy_" + key).parent().attr('disabled', true);
+    //             }
 
-                if (bids > old_bids) {
-                    $("#other_sell_" + key).html(
-                        "<font color='green'>" + parseFloat(bids.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
-                    );
-                } else if (bids == old_bids) {
-                    $("#other_sell_" + key).html(
-                        "<font color='white'>" + parseFloat(bids.toFixed(2)) + "</font>"
-                    );
-                } else {
-                    $("#other_sell_" + key).html(
-                        "<font color='red'>" + parseFloat(bids.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
-                    );
-                }
+    //             if (bids > old_bids) {
+    //                 $("#other_sell_" + key).html(
+    //                     "<font color='green'>" + parseFloat(bids.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
+    //                 );
+    //             } else if (bids == old_bids) {
+    //                 $("#other_sell_" + key).html(
+    //                     "<font color='white'>" + parseFloat(bids.toFixed(2)) + "</font>"
+    //                 );
+    //             } else {
+    //                 $("#other_sell_" + key).html(
+    //                     "<font color='red'>" + parseFloat(bids.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
+    //                 );
+    //             }
 
-                if (asks > old_asks) {
-                    $("#other_buy_" + key).html(
-                        "<font color='green'>" + parseFloat(asks.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
-                    );
-                } else if (asks == old_asks) {
-                    $("#other_buy_" + key).html(
-                        "<font color='white'>" + parseFloat(asks.toFixed(2)) + "</font>"
-                    );
-                } else {
-                    $("#other_buy_" + key).html(
-                        "<font color='red'>" + parseFloat(asks.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
-                    );
-                }
+    //             if (asks > old_asks) {
+    //                 $("#other_buy_" + key).html(
+    //                     "<font color='green'>" + parseFloat(asks.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
+    //                 );
+    //             } else if (asks == old_asks) {
+    //                 $("#other_buy_" + key).html(
+    //                     "<font color='white'>" + parseFloat(asks.toFixed(2)) + "</font>"
+    //                 );
+    //             } else {
+    //                 $("#other_buy_" + key).html(
+    //                     "<font color='red'>" + parseFloat(asks.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
+    //                 );
+    //             }
 
-                let diff = (asks - bids) * 1000;
-                if (diff > 0) {
-                    $("#other_rate_" + key).html(
-                        "<font color='green'>" + parseFloat(diff.toFixed(2)) + "</font>"
-                    );
-                } else if (diff == 0) {
-                    $("#other_rate_" + key).html(
-                        "<font color=''>" + parseFloat(diff.toFixed(2)) + "</font>"
-                    );
-                } else {
-                    $("#other_rate_" + key).html(
-                        "<font color='red'>" + parseFloat(diff.toFixed(2)) + "</font>"
-                    );
-                }
-            },
-        });
+    //             let diff = (asks - bids) * 1000;
+    //             if (diff > 0) {
+    //                 $("#other_rate_" + key).html(
+    //                     "<font color='green'>" + parseFloat(diff.toFixed(2)) + "</font>"
+    //                 );
+    //             } else if (diff == 0) {
+    //                 $("#other_rate_" + key).html(
+    //                     "<font color=''>" + parseFloat(diff.toFixed(2)) + "</font>"
+    //                 );
+    //             } else {
+    //                 $("#other_rate_" + key).html(
+    //                     "<font color='red'>" + parseFloat(diff.toFixed(2)) + "</font>"
+    //                 );
+    //             }
+    //         },
+    //     });
 
-        i++;
-        i = i % smplOtherData.length;
-    }, secs * 1000); // every secs secconds
+    //     i++;
+    //     i = i % smplOtherData.length;
+    // }, secs * 1000); // every secs secconds
 }
 
 function showStockTradingData(stockData, secs) {

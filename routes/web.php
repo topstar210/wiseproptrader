@@ -38,6 +38,12 @@ Route::post('/verifyID', 'HomeController@verifyID');
 Route::get('/withdraw', 'HomeController@withdrawPayment');
 Route::get('/confirm-withdraw/{confirm_id}', 'HomeController@confirmWithdrawPayment');
 
+// dashboard router
+Route::get('/dashboard/client-area', 'Dashboard\ClientAreaController@index')->name('dash_client_area');
+Route::get('/dashboard/profile', 'Dashboard\ProfileController@index')->name('dash_profile');
+route::get('/dashboard/download', 'Dashboard\IndexController@download')->name('dash_download');
+route::get('/dashboard/index', 'Dashboard\IndexController@otherpages')->name('dash_comingsoon');
+
 Route::middleware(['auth', 'checkAdmin'])->group(function () {
     Route::get('admin/repports', 'AdminRepportsController@withdraw_deposit_repport');
     Route::get('admin/repports/export/', 'AdminRepportsController@download_withdraw_deposit_repport')->name('download_withdraw_deposit_repport');
