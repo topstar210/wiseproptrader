@@ -40,7 +40,8 @@ async function postData(url = '', data = {}, method = 'GET') {
     return response.json(); // parses JSON response into native JavaScript objects
 }
 function numberWithCommas(x) {
-    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    // return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");(?<![.\d])(?=(\d{3})+(?!\d))
+    return x.toString().replace(/(?=(?:\d{3})+(?!\d))/g, ","); // support safari
 }
 function floatWithOutCommas(x) {
     return x.toString().replace(/,/g, "");
@@ -138,10 +139,10 @@ function showCurrencyList(searchWord) {
                         </div>
                         <div class='btn-group' role="group" style='width:58%'>
                             <button class='sell-toggle btn btn-sm btn-outline-danger' data-toggle='modal' data-target='#sellModalForex' onclick='showSellModalForex("${key}", "Forex")' ${element.tradeable == 0 ? 'disabled="disabled"' : ''}>
-                                <span id='forex_sell_${key}'>${parseFloat(element.asks.toFixed(2))}</span>
+                                <span id='forex_sell_${key}'>${parseFloat(element.asks?.toFixed(2))}</span>
                             </button>
                             <button class='buy-toggle btn btn-sm btn-outline-success' data-toggle='modal' data-target='#buyModalForex' onclick='showBuyModalForex("${key}", "Forex")' ${element.tradeable == 0 ? 'disabled="disabled"' : ''}>
-                                <span id='forex_buy_${key}'>${parseFloat(element.bids.toFixed(2))}</span>
+                                <span id='forex_buy_${key}'>${parseFloat(element.bids?.toFixed(2))}</span>
                             </button>
                         </div>
                     </div>`;
@@ -176,10 +177,10 @@ function showCurrencyList(searchWord) {
                         </div>
                         <div class='btn-group' role="group" style='width:58%'>
                             <button class='sell-toggle btn btn-sm btn-outline-danger' data-toggle='modal' data-target='#sellModalOther' onclick='showSellModalOther("${key}", "Other")' ${element.tradeable == 0 ? 'disabled="disabled"' : ''}>
-                                <span id='other_sell_${key}'>${parseFloat(element.asks.toFixed(2))}</span>
+                                <span id='other_sell_${key}'>${parseFloat(element.asks?.toFixed(2))}</span>
                             </button>
                             <button class='buy-toggle btn btn-sm btn-outline-success' data-toggle='modal' data-target='#buyModalOther' onclick='showBuyModalOther("${key}", "Other")' ${element.tradeable == 0 ? 'disabled="disabled"' : ''}>
-                                <span id='other_buy_${key}'>${parseFloat(element.bids.toFixed(2))}</span>
+                                <span id='other_buy_${key}'>${parseFloat(element.bids?.toFixed(2))}</span>
                             </button>
                         </div>
                     </div>`;
@@ -214,10 +215,10 @@ function showCurrencyList(searchWord) {
                             </div>
                             <div class='btn-group' role="group" style='width:58%'>
                                 <button class='sell-toggle btn btn-sm btn-outline-danger' data-toggle='modal' data-target='#sellModalStock' onclick='showSellModalStock("${key}")' ${element.tradeable == 0 ? 'disabled="disabled"' : ''}>
-                                    <span id='stock_sell_${key}'>${parseFloat(element.bids.toFixed(2))}</span>
+                                    <span id='stock_sell_${key}'>${parseFloat(element.bids?.toFixed(2))}</span>
                                 </button>
                                 <button class='buy-toggle btn btn-sm btn-outline-success' data-toggle='modal' data-target='#buyModalStock' onclick='showBuyModalStock("${key}")' ${element.tradeable == 0 ? 'disabled="disabled"' : ''}>
-                                    <span id='stock_buy_${key}'>${parseFloat(element.asks.toFixed(2))}</span>
+                                    <span id='stock_buy_${key}'>${parseFloat(element.asks?.toFixed(2))}</span>
                                 </button>
                             </div>
                         </div>`;
@@ -246,10 +247,10 @@ function showCurrencyList(searchWord) {
                             </div>
                             <div class='btn-group' role="group" style='width:58%'>
                                 <button class='sell-toggle btn btn-sm btn-outline-danger' data-toggle='modal' data-target='#sellModalCrypto' onclick='showSellModalCrypto("${key}")'>
-                                    <span id='crypto_sell_${key}'>${parseFloat(element.bids.toFixed(5))}</span>
+                                    <span id='crypto_sell_${key}'>${parseFloat(element.bids?.toFixed(5))}</span>
                                 </button>
                                 <button class='buy-toggle btn btn-sm btn-outline-success' data-toggle='modal' data-target='#buyModalCrypto' onclick='showBuyModalCrypto("${key}")'>
-                                    <span id='crypto_buy_${key}'>${parseFloat(element.asks.toFixed(5))}</span>
+                                    <span id='crypto_buy_${key}'>${parseFloat(element.asks?.toFixed(5))}</span>
                                 </button>
                             </div>
                         </div>`;
@@ -511,15 +512,15 @@ function showOrder() {
                                 } else if (kind == 'crypto') {
                                     data.data = socketData.find((item) => item.key === `${res_data[i].base_symbol.toLowerCase()}${res_data[i].quote_symbol.toLowerCase()}`);
                                 }
-                                if (parseFloat(data.data.bids) == 0.0 || parseFloat(data.data.asks) == 0.0 ) {
+                                if (parseFloat(data.data?.bids) == 0.0 || parseFloat(data.data?.asks) == 0.0 ) {
                                     console.info('0 data', data.data);
                                     return;
                                 }
                                 let pro_loss_val = 0;
-                                let rate = data.data.asks;
+                                let rate = data.data?.asks;
                                 // kur ta ndryshosh ndryshoje edhe tek closeOrder, closeAllOrder TradingController.php
                                 if (res_data[i].type == "sell") {
-                                  market_rate = data.data.bids * 1;
+                                  market_rate = data.data?.bids * 1;
                                 //   // pro_loss_val = (market_rate-res_data[i].open_rate)*(-10000);\
                                 //   if (kind == 'crypto') {
                                 //     pro_loss_val = units * (market_rate - open_rate);
@@ -534,7 +535,7 @@ function showOrder() {
                                     }
 
                                 } else {
-                                  market_rate = data.data.asks * 1;
+                                  market_rate = data.data?.asks * 1;
                                 //   // pro_loss_val = (market_rate-res_data[i].open_rate)*10000;
                                 //     if (kind == 'crypto') {
                                 //         pro_loss_val = units * (market_rate - open_rate);
@@ -566,7 +567,7 @@ function showOrder() {
                                 }
 
 
-                                pro_loss_str = `<span class="text-${(pro_loss_val >= 0) ? 'success' : 'danger'}">${parseFloat(pro_loss_val.toFixed(5))}</span>`;
+                                pro_loss_str = `<span class="text-${(pro_loss_val >= 0) ? 'success' : 'danger'}">${parseFloat(pro_loss_val.toFixed(2))}</span>`;
                                 total_pro_loss[i] = pro_loss_val;
                                 $("#market_rate_" + res_data[i].id).html(parseFloat(market_rate.toFixed(5)));
                                 $("#trade_close_" + res_data[i].id).attr("onclick", `closeOrder(${res_data[i].id}, ${parseFloat(market_rate.toFixed(5))})`);
@@ -695,15 +696,15 @@ function showOrder() {
                                     if (kind == 'forex' || kind == 'stock' || kind == 'crypto') {
                                         return;
                                     }
-                                    if (parseFloat(data.data.bids) == 0.0 || parseFloat(data.data.asks) == 0.0 ) {
+                                    if (parseFloat(data.data?.bids) == 0.0 || parseFloat(data.data?.asks) == 0.0 ) {
                                         console.info('0 data', data.data);
                                         return;
                                     }
                                     let pro_loss_val = 0;
-                                    let rate = data.data.rate;
+                                    let rate = data.data?.rate;
                                     // kur ta ndryshosh ndryshoje edhe tek closeOrder, closeAllOrder TradingController.php
                                     if (res_data[i].type == "sell") {
-                                    market_rate = data.data.bids * 1;
+                                    market_rate = data.data?.bids * 1;
                                     //   // pro_loss_val = (market_rate-res_data[i].open_rate)*(-10000);\
                                     //   if (kind == 'crypto') {
                                     //     pro_loss_val = units * (market_rate - open_rate);
@@ -714,7 +715,7 @@ function showOrder() {
                                     pro_loss_val = ((units * (open_rate - market_rate)) + spread) / market_rate ;
 
                                     } else {
-                                    market_rate = data.data.asks * 1;
+                                    market_rate = data.data?.asks * 1;
                                     //   // pro_loss_val = (market_rate-res_data[i].open_rate)*10000;
                                     //     if (kind == 'crypto') {
                                     //         pro_loss_val = units * (market_rate - open_rate);
@@ -868,12 +869,12 @@ function showOrder() {
                         if (res_data[i].pro_loss * 1 >= 0) {
                             pro_loss_str =
                                 "<font color='green'>" +
-                                res_data[i].pro_loss +
+                                parseFloat(res_data[i].pro_loss).toFixed(2) +
                                 "</font>";
                         } else {
                             pro_loss_str =
                                 "<font color='red'>" +
-                                res_data[i].pro_loss +
+                                parseFloat(res_data[i].pro_loss).toFixed(2) +
                                 "</font>";
                         }
                     }
@@ -933,8 +934,8 @@ function getMarketinfo(base_symbol, quote_symbol) {
         url: base_url + "/trading/getMarketInfo",
         data: { base_symbol: base_symbol, quote_symbol: quote_symbol },
         success: function (data) {
-            res["bids"] = data.data.bids;
-            res["asks"] = data.data.asks;
+            res["bids"] = data.data?.bids;
+            res["asks"] = data.data?.asks;
         },
         error: function (e) {
             console.log(e);
@@ -1394,29 +1395,29 @@ function showForexTradingData(forexData, secs) {
 
                 if (bids > old_bids) {
                     $("#forex_sell_" + key).html(
-                        "<font color='green'>" + parseFloat(bids.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
+                        "<font color='green'>" + parseFloat(bids?.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
                     );
                 } else if (bids == old_bids) {
                     $("#forex_sell_" + key).html(
-                        "<font color='white'>" + parseFloat(bids.toFixed(2)) + "</font>"
+                        "<font color='white'>" + parseFloat(bids?.toFixed(2)) + "</font>"
                     );
                 } else {
                     $("#forex_sell_" + key).html(
-                        "<font color='red'>" + parseFloat(bids.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
+                        "<font color='red'>" + parseFloat(bids?.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
                     );
                 }
 
                 if (asks > old_asks) {
                     $("#forex_buy_" + key).html(
-                        "<font color='green'>" + parseFloat(asks.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
+                        "<font color='green'>" + parseFloat(asks?.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
                     );
                 } else if (asks == old_asks) {
                     $("#forex_buy_" + key).html(
-                        "<font color='white'>" + parseFloat(asks.toFixed(2)) + "</font>"
+                        "<font color='white'>" + parseFloat(asks?.toFixed(2)) + "</font>"
                     );
                 } else {
                     $("#forex_buy_" + key).html(
-                        "<font color='red'>" + parseFloat(asks.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
+                        "<font color='red'>" + parseFloat(asks?.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
                     );
                 }
 
@@ -1449,111 +1450,111 @@ function showOtherTradingData(otherData, secs) {
         smplOtherData.push({key, element});
     }
     let i = 0;
-    // setInterval(function () {
-    //     let forexPair = '';
-    //     if (smplOtherData[i].element.type == 'IG') {
-    //         forexPair = smplOtherData[i].element.base_forex_instruments;
-    //     } else {
-    //         forexPair = smplOtherData[i].element.base_forex_instruments + "/" + smplOtherData[i].element.quote_forex_instruments;
-    //     }
-    //     let key = smplOtherData[i].key;
-    //     $.ajax({
-    //         type: "get",
-    //         enctype: "multipart/form-data",
-    //         url: base_url + "/showForexTradingData",
-    //         data: { forexPair: forexPair, id: key },
+    setInterval(function () {
+        let forexPair = '';
+        if (smplOtherData[i].element.type == 'IG') {
+            forexPair = smplOtherData[i].element.base_forex_instruments;
+        } else {
+            forexPair = smplOtherData[i].element.base_forex_instruments + "/" + smplOtherData[i].element.quote_forex_instruments;
+        }
+        let key = smplOtherData[i].key;
+        $.ajax({
+            type: "get",
+            enctype: "multipart/form-data",
+            url: base_url + "/showForexTradingData",
+            data: { forexPair: forexPair, id: key },
 
-    //         success: function (data) {
-    //             if (!data.hasOwnProperty('id'))  return;
-    //             let id = data.id;
-    //             let bids = data.bids;
-    //             let old_bids = $("#other_sell_" + key).text();
-    //             let asks = data.asks;
-    //             let old_asks = $("#other_buy_" + key).text();
-    //             let closeoutBid = data.closeoutBid;
-    //             let closeoutAsk = data.closeoutAsk;
+            success: function (data) {
+                if (!data.hasOwnProperty('id'))  return;
+                let id = data.id;
+                let bids = data.bids;
+                let old_bids = $("#other_sell_" + key).text();
+                let asks = data.asks;
+                let old_asks = $("#other_buy_" + key).text();
+                let closeoutBid = data.closeoutBid;
+                let closeoutAsk = data.closeoutAsk;
 
-    //             let bid_change_rate =
-    //                 ((bids - closeoutBid) / closeoutBid) * 10000;
-    //             let ask_change_rate =
-    //                 ((asks - closeoutAsk) / closeoutAsk) * 10000;
-    //             let total_change_rate = ((asks - bids) / bids) * 100;
-    //             total_change_rate = parseFloat(total_change_rate.toFixed(2));
-    //             if ((total_change_rate * 1000) % 2 < 1) {
-    //                 total_change_rate = total_change_rate * -1;
-    //             }
-    //             // console.log(total_change_rate * 1000 % 2);
-    //             let forex_change_rate = "";
-    //             if (isNaN(total_change_rate)) {
-    //                 forex_change_rate = "0.00%";
-    //             }
-    //             // console.log("change_rate=>", total_change_rate);
+                let bid_change_rate =
+                    ((bids - closeoutBid) / closeoutBid) * 10000;
+                let ask_change_rate =
+                    ((asks - closeoutAsk) / closeoutAsk) * 10000;
+                let total_change_rate = ((asks - bids) / bids) * 100;
+                total_change_rate = parseFloat(total_change_rate.toFixed(2));
+                if ((total_change_rate * 1000) % 2 < 1) {
+                    total_change_rate = total_change_rate * -1;
+                }
+                // console.log(total_change_rate * 1000 % 2);
+                let forex_change_rate = "";
+                if (isNaN(total_change_rate)) {
+                    forex_change_rate = "0.00%";
+                }
+                // console.log("change_rate=>", total_change_rate);
 
-    //             let tradeable = data.tradeable;
-    //             if (tradeable) {
-    //                 $("#star_image_" + key).attr(
-    //                     "src",
-    //                     base_url + "/landingAssets/images/1-circle.svg"
-    //                 );
-    //                 $("#other_sell_" + key).parent().attr('disabled', false);
-    //                 $("#other_buy_" + key).parent().attr('disabled', false);
-    //             } else {
-    //                 $("#star_image_" + key).attr(
-    //                     "src",
-    //                     base_url + "/landingAssets/images/0-circle.svg"
-    //                 );
-    //                 $("#other_sell_" + key).parent().attr('disabled', true);
-    //                 $("#other_buy_" + key).parent().attr('disabled', true);
-    //             }
+                let tradeable = data.tradeable;
+                if (tradeable) {
+                    $("#star_image_" + key).attr(
+                        "src",
+                        base_url + "/landingAssets/images/1-circle.svg"
+                    );
+                    $("#other_sell_" + key).parent().attr('disabled', false);
+                    $("#other_buy_" + key).parent().attr('disabled', false);
+                } else {
+                    $("#star_image_" + key).attr(
+                        "src",
+                        base_url + "/landingAssets/images/0-circle.svg"
+                    );
+                    $("#other_sell_" + key).parent().attr('disabled', true);
+                    $("#other_buy_" + key).parent().attr('disabled', true);
+                }
 
-    //             if (bids > old_bids) {
-    //                 $("#other_sell_" + key).html(
-    //                     "<font color='green'>" + parseFloat(bids.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
-    //                 );
-    //             } else if (bids == old_bids) {
-    //                 $("#other_sell_" + key).html(
-    //                     "<font color='white'>" + parseFloat(bids.toFixed(2)) + "</font>"
-    //                 );
-    //             } else {
-    //                 $("#other_sell_" + key).html(
-    //                     "<font color='red'>" + parseFloat(bids.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
-    //                 );
-    //             }
+                if (bids > old_bids) {
+                    $("#other_sell_" + key).html(
+                        "<font color='green'>" + parseFloat(bids?.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
+                    );
+                } else if (bids == old_bids) {
+                    $("#other_sell_" + key).html(
+                        "<font color='white'>" + parseFloat(bids?.toFixed(2)) + "</font>"
+                    );
+                } else {
+                    $("#other_sell_" + key).html(
+                        "<font color='red'>" + parseFloat(bids?.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
+                    );
+                }
 
-    //             if (asks > old_asks) {
-    //                 $("#other_buy_" + key).html(
-    //                     "<font color='green'>" + parseFloat(asks.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
-    //                 );
-    //             } else if (asks == old_asks) {
-    //                 $("#other_buy_" + key).html(
-    //                     "<font color='white'>" + parseFloat(asks.toFixed(2)) + "</font>"
-    //                 );
-    //             } else {
-    //                 $("#other_buy_" + key).html(
-    //                     "<font color='red'>" + parseFloat(asks.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
-    //                 );
-    //             }
+                if (asks > old_asks) {
+                    $("#other_buy_" + key).html(
+                        "<font color='green'>" + parseFloat(asks?.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
+                    );
+                } else if (asks == old_asks) {
+                    $("#other_buy_" + key).html(
+                        "<font color='white'>" + parseFloat(asks?.toFixed(2)) + "</font>"
+                    );
+                } else {
+                    $("#other_buy_" + key).html(
+                        "<font color='red'>" + parseFloat(asks?.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
+                    );
+                }
 
-    //             let diff = (asks - bids) * 1000;
-    //             if (diff > 0) {
-    //                 $("#other_rate_" + key).html(
-    //                     "<font color='green'>" + parseFloat(diff.toFixed(2)) + "</font>"
-    //                 );
-    //             } else if (diff == 0) {
-    //                 $("#other_rate_" + key).html(
-    //                     "<font color=''>" + parseFloat(diff.toFixed(2)) + "</font>"
-    //                 );
-    //             } else {
-    //                 $("#other_rate_" + key).html(
-    //                     "<font color='red'>" + parseFloat(diff.toFixed(2)) + "</font>"
-    //                 );
-    //             }
-    //         },
-    //     });
+                let diff = (asks - bids) * 1000;
+                if (diff > 0) {
+                    $("#other_rate_" + key).html(
+                        "<font color='green'>" + parseFloat(diff.toFixed(2)) + "</font>"
+                    );
+                } else if (diff == 0) {
+                    $("#other_rate_" + key).html(
+                        "<font color=''>" + parseFloat(diff.toFixed(2)) + "</font>"
+                    );
+                } else {
+                    $("#other_rate_" + key).html(
+                        "<font color='red'>" + parseFloat(diff.toFixed(2)) + "</font>"
+                    );
+                }
+            },
+        });
 
-    //     i++;
-    //     i = i % smplOtherData.length;
-    // }, secs * 1000); // every secs secconds
+        i++;
+        i = i % smplOtherData.length;
+    }, secs * 1000); // every secs secconds
 }
 
 function showStockTradingData(stockData, secs) {
@@ -1617,29 +1618,29 @@ function showStockTradingData(stockData, secs) {
 
                 if (bids > old_bids) {
                     $("#stock_sell_" + key).html(
-                        "<font color='green'>" + parseFloat(bids.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
+                        "<font color='green'>" + parseFloat(bids?.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
                     );
                 } else if (bids == old_bids) {
                     $("#stock_sell_" + key).html(
-                        "<font color='white'>" + parseFloat(bids.toFixed(2)) + "</font>"
+                        "<font color='white'>" + parseFloat(bids?.toFixed(2)) + "</font>"
                     );
                 } else {
                     $("#stock_sell_" + key).html(
-                        "<font color='red'>" + parseFloat(bids.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
+                        "<font color='red'>" + parseFloat(bids?.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
                     );
                 }
 
                 if (asks > old_asks) {
                     $("#stock_buy_" + key).html(
-                        "<font color='green'>" + parseFloat(asks.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
+                        "<font color='green'>" + parseFloat(asks?.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
                     );
                 } else if (asks == old_asks) {
                     $("#stock_buy_" + key).html(
-                        "<font color='white'>" + parseFloat(asks.toFixed(2)) + "</font>"
+                        "<font color='white'>" + parseFloat(asks?.toFixed(2)) + "</font>"
                     );
                 } else {
                     $("#stock_buy_" + key).html(
-                        "<font color='red'>" + parseFloat(asks.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
+                        "<font color='red'>" + parseFloat(asks?.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
                     );
                 }
 
@@ -1722,7 +1723,7 @@ function showCryptoTradingData(cryptoData, secs) {
                     crypto_change_rate = "<font color='#0f0'>+" + total_change_rate + "%</font>";
 
                     $("#crypto_sell_" + key).html(
-                        "<font color='green'>" + parseFloat(bids.toFixed(5)) + "<i class='fa fa-arrow-up'></i></font>"
+                        "<font color='green'>" + parseFloat(bids?.toFixed(5)) + "<i class='fa fa-arrow-up'></i></font>"
                     );
                 }
 
@@ -1740,21 +1741,21 @@ function showCryptoTradingData(cryptoData, secs) {
 
                 if (asks >= old_asks) {
                     $("#crypto_buy_" + key).html(
-                        "<font color='green'>" + parseFloat(asks.toFixed(5)) + "<i class='fa fa-arrow-up'></i></font>"
+                        "<font color='green'>" + parseFloat(asks?.toFixed(5)) + "<i class='fa fa-arrow-up'></i></font>"
                     );
                 } else {
                     $("#crypto_buy_" + key).html(
-                        "<font color='red'>" + parseFloat(asks.toFixed(5)) + "<i class='fa fa-arrow-down'></i></font>"
+                        "<font color='red'>" + parseFloat(asks?.toFixed(5)) + "<i class='fa fa-arrow-down'></i></font>"
                     );
                 }
 
                 if (bids >= old_bids) {
                     $("#crypto_sell_" + key).html(
-                        "<font color='green'>" + parseFloat(bids.toFixed(5)) + "<i class='fa fa-arrow-up'></i></font>"
+                        "<font color='green'>" + parseFloat(bids?.toFixed(5)) + "<i class='fa fa-arrow-up'></i></font>"
                     );
                 } else {
                     $("#crypto_sell_" + key).html(
-                        "<font color='red'>" + parseFloat(bids.toFixed(5)) + "<i class='fa fa-arrow-down'></i></font>"
+                        "<font color='red'>" + parseFloat(bids?.toFixed(5)) + "<i class='fa fa-arrow-down'></i></font>"
                     );
                 }
             },
@@ -1778,7 +1779,7 @@ function updateBalance() {
             margin = parseFloat(data.margin.toFixed(2));
             balance = parseFloat(data.balance.toFixed(2));
             spread = data.spread;
-            let str = `<p class='crypt-up'>${numberWithCommas(parseFloat(data.balance.toFixed(2)))} ${data.userCurrency}</p>`;
+            let str = `<p class='crypt-up'>${data.userCurrency} ${numberWithCommas(parseFloat(data.balance.toFixed(2)))}</p>`;
             $("#balance").html(str);
             $("#user_balance").html(str);
             $("#balance_mobile").html(str);
@@ -1891,6 +1892,8 @@ function getStopout() {
 
         success: function (data) {
             stopout = parseInt(data.stopout);
+            console.log("***********");
+            console.log(stopout);
         },
         error: function (e) {
             console.log(e);
@@ -2730,7 +2733,7 @@ function runWebSocketForex(forexData) {
 
     let dataPairs = smplForexData.map((item) => item.element.base_forex_instruments + item.element.quote_forex_instruments);
 
-    const ws = new WebSocket("wss://ws.eodhistoricaldata.com/ws/forex?api_token=63c802ccc7b595.70854189");
+    const ws = new WebSocket("wss://ws.eodhistoricaldata.com/ws/forex?api_token=642418fd9b7d81.59882060");
 
     ws.onopen = () => {
         const msg = { action: 'subscribe', symbols: dataPairs.join(',') };
@@ -2792,29 +2795,29 @@ function runWebSocketForex(forexData) {
 
             if (bids > old_bids) {
                 $("#forex_sell_" + key).html(
-                    "<font color='green'>" + parseFloat(bids.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
+                    "<font color='green'>" + parseFloat(bids?.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
                 );
             } else if (bids == old_bids) {
                 $("#forex_sell_" + key).html(
-                    "<font color='white'>" + parseFloat(bids.toFixed(2)) + "</font>"
+                    "<font color='white'>" + parseFloat(bids?.toFixed(2)) + "</font>"
                 );
             } else {
                 $("#forex_sell_" + key).html(
-                    "<font color='red'>" + parseFloat(bids.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
+                    "<font color='red'>" + parseFloat(bids?.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
                 );
             }
 
             if (asks > old_asks) {
                 $("#forex_buy_" + key).html(
-                    "<font color='green'>" + parseFloat(asks.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
+                    "<font color='green'>" + parseFloat(asks?.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
                 );
             } else if (asks == old_asks) {
                 $("#forex_buy_" + key).html(
-                    "<font color='white'>" + parseFloat(asks.toFixed(2)) + "</font>"
+                    "<font color='white'>" + parseFloat(asks?.toFixed(2)) + "</font>"
                 );
             } else {
                 $("#forex_buy_" + key).html(
-                    "<font color='red'>" + parseFloat(asks.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
+                    "<font color='red'>" + parseFloat(asks?.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
                 );
             }
 
@@ -2844,7 +2847,7 @@ function runWebSocketStock(stockData) {
 
     let dataPairs = smplStockData.map((item) => item.element.base_stock);
 
-    const ws = new WebSocket("wss://ws.eodhistoricaldata.com/ws/us-quote?api_token=63c802ccc7b595.70854189");
+    const ws = new WebSocket("wss://ws.eodhistoricaldata.com/ws/us-quote?api_token=642418fd9b7d81.59882060");
 
     ws.onopen = () => {
         const msg = { action: 'subscribe', symbols: dataPairs.join(',') };
@@ -2903,29 +2906,29 @@ function runWebSocketStock(stockData) {
 
             if (bids > old_bids) {
                 $("#stock_sell_" + key).html(
-                    "<font color='green'>" + parseFloat(bids.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
+                    "<font color='green'>" + parseFloat(bids?.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
                 );
             } else if (bids == old_bids) {
                 $("#stock_sell_" + key).html(
-                    "<font color='white'>" + parseFloat(bids.toFixed(2)) + "</font>"
+                    "<font color='white'>" + parseFloat(bids?.toFixed(2)) + "</font>"
                 );
             } else {
                 $("#stock_sell_" + key).html(
-                    "<font color='red'>" + parseFloat(bids.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
+                    "<font color='red'>" + parseFloat(bids?.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
                 );
             }
 
             if (asks > old_asks) {
                 $("#stock_buy_" + key).html(
-                    "<font color='green'>" + parseFloat(asks.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
+                    "<font color='green'>" + parseFloat(asks?.toFixed(2)) + "<i class='fa fa-arrow-up'></i></font>"
                 );
             } else if (asks == old_asks) {
                 $("#stock_buy_" + key).html(
-                    "<font color='white'>" + parseFloat(asks.toFixed(2)) + "</font>"
+                    "<font color='white'>" + parseFloat(asks?.toFixed(2)) + "</font>"
                 );
             } else {
                 $("#stock_buy_" + key).html(
-                    "<font color='red'>" + parseFloat(asks.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
+                    "<font color='red'>" + parseFloat(asks?.toFixed(2)) + "<i class='fa fa-arrow-down'></i></font>"
                 );
             }
 
@@ -2971,11 +2974,11 @@ function runWebSocketCrypto(cryptoData) {
         rec.forEach((data) => {
             const findIndex = socketData.findIndex((item) => item.pair === data.s);
             if(findIndex === -1) {
-                socketData.push({ key: data.pair.split("-").join("").toLowerCase(), s: data.pair, bids: data.bp, asks: data.ap, closeoutBid: data.bp, closeoutAsk: data.ap, kind: 'crypto' });
+                socketData.push({ key: data.pair?.split("-").join("").toLowerCase(), s: data.pair, bids: data.bp, asks: data.ap, closeoutBid: data.bp, closeoutAsk: data.ap, kind: 'crypto' });
             } else {
-                socketData[findIndex] = { key: data.pair.split("-").join("").toLowerCase(), s: data.pair, bids: data.bp, asks: data.ap, closeoutBid: data.bp, closeoutAsk: data.ap, kind: 'crypto' };
+                socketData[findIndex] = { key: data.pair?.split("-").join("").toLowerCase(), s: data.pair, bids: data.bp, asks: data.ap, closeoutBid: data.bp, closeoutAsk: data.ap, kind: 'crypto' };
             }
-            let key = data.pair.split("-").join("").toLowerCase();
+            let key = data.pair?.split("-").join("").toLowerCase();
             let bids = data.bp;
             let old_bids = $("#crypto_sell_" + key).text();
             let asks = data.ap;
@@ -3018,29 +3021,29 @@ function runWebSocketCrypto(cryptoData) {
 
             if (bids > old_bids) {
                 $("#crypto_sell_" + key).html(
-                    "<font color='green'>" + parseFloat(bids.toFixed(5)) + "<i class='fa fa-arrow-up'></i></font>"
+                    "<font color='green'>" + parseFloat(bids?.toFixed(5)) + "<i class='fa fa-arrow-up'></i></font>"
                 );
             } else if (bids == old_bids) {
                 $("#crypto_sell_" + key).html(
-                    "<font color='white'>" + parseFloat(bids.toFixed(5)) + "</font>"
+                    "<font color='white'>" + parseFloat(bids?.toFixed(5)) + "</font>"
                 );
             } else {
                 $("#crypto_sell_" + key).html(
-                    "<font color='red'>" + parseFloat(bids.toFixed(5)) + "<i class='fa fa-arrow-down'></i></font>"
+                    "<font color='red'>" + parseFloat(bids?.toFixed(5)) + "<i class='fa fa-arrow-down'></i></font>"
                 );
             }
 
             if (asks > old_asks) {
                 $("#crypto_buy_" + key).html(
-                    "<font color='green'>" + parseFloat(asks.toFixed(5)) + "<i class='fa fa-arrow-up'></i></font>"
+                    "<font color='green'>" + parseFloat(asks?.toFixed(5)) + "<i class='fa fa-arrow-up'></i></font>"
                 );
             } else if (asks == old_asks) {
                 $("#crypto_buy_" + key).html(
-                    "<font color='white'>" + parseFloat(asks.toFixed(5)) + "</font>"
+                    "<font color='white'>" + parseFloat(asks?.toFixed(5)) + "</font>"
                 );
             } else {
                 $("#crypto_buy_" + key).html(
-                    "<font color='red'>" + parseFloat(asks.toFixed(5)) + "<i class='fa fa-arrow-down'></i></font>"
+                    "<font color='red'>" + parseFloat(asks?.toFixed(5)) + "<i class='fa fa-arrow-down'></i></font>"
                 );
             }
 

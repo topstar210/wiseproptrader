@@ -10,7 +10,7 @@
     <title>{{$app_settings['app_title']??''}}</title>
 
     <meta name="title" content="{{$app_settings['app_title']??''}}">
-    <meta name="description" content="{{$app_settings['app_description']??""}}" />
+    <meta name="description" content="{{$app_settings['app_description']??''}}" />
 
     <!-- Scripts -->
     <link rel="stylesheet" href="{{asset('landingAssets/bootstrap/css/bootstrap.min.css')}}">
@@ -73,13 +73,13 @@
         <script src="https://s3.tradingview.com/tv.js"></script>
 
         @mobile
-            <script src="{{asset('js/forex/showStatusMobile.js?v=13')}}"></script>
+            <script src="{{asset('js/forex/showStatusMobile.js?v=14')}}"></script>
         @endmobile
         @tablet
-            <script src="{{asset('js/forex/showStatus.js?v=13')}}"></script>
+            <script src="{{asset('js/forex/showStatus.js?v=14')}}"></script>
         @endtablet
         @desktop
-            <script src="{{asset('js/forex/showStatus.js?v=13')}}"></script>
+            <script src="{{asset('js/forex/showStatus.js?v=14')}}"></script>
         @enddesktop
 
         <script src="{{asset('js/profile.js?v=13')}}"></script>
