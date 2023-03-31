@@ -39,7 +39,8 @@ async function postData(url = '', data = {}, method = 'GET') {
     return response.json(); // parses JSON response into native JavaScript objects
 }
 function numberWithCommas(x) {
-    return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    // return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    return x.toString().replace(/(?=(?:\d{3})+(?!\d))/g, ","); // safari support
 }
 function floatWithOutCommas(x) {
     return x.toString().replace(/,/g, "");
@@ -470,16 +471,16 @@ function showOrder() {
                                 } else if (kind == 'stock') {
                                     data.data = socketData.find((item) => item.key === `${res_data[i].base_symbol.toLowerCase()}`);
                                 }
-                                if (parseFloat(data.data.bids) == 0.0 || parseFloat(data.data.asks) == 0.0 ) {
+                                if (parseFloat(data.data?.bids) == 0.0 || parseFloat(data.data?.asks) == 0.0 ) {
                                     console.info('0 data', data.data);
                                     return;
                                 }
                                 console.log(data)
                                 let pro_loss_val = 0;
-                                let rate = data.data.asks;
+                                let rate = data.data?.asks;
                                 // kur ta ndryshosh ndryshoje edhe tek closeOrder, closeAllOrder TradingController.php
                                 if (res_data[i].type == "sell") {
-                                    market_rate = data.data.bids * 1;
+                                    market_rate = data.data?.bids * 1;
                                 //   // pro_loss_val = (market_rate-res_data[i].open_rate)*(-10000);\
                                 //   if (kind == 'crypto') {
                                 //     pro_loss_val = units * (market_rate - open_rate);
@@ -494,7 +495,7 @@ function showOrder() {
                                     }
 
                                 } else {
-                                    market_rate = data.data.asks * 1;
+                                    market_rate = data.data?.asks * 1;
                                 //   // pro_loss_val = (market_rate-res_data[i].open_rate)*10000;
                                 //     if (kind == 'crypto') {
                                 //         pro_loss_val = units * (market_rate - open_rate);
@@ -526,7 +527,7 @@ function showOrder() {
                                 }
 
 
-                                pro_loss_str = `<span class="text-${(pro_loss_val >= 0) ? 'success' : 'danger'}">${parseFloat(pro_loss_val.toFixed(5))}</span>`;
+                                pro_loss_str = `<span class="text-${(pro_loss_val >= 0) ? 'success' : 'danger'}">${parseFloat(pro_loss_val.toFixed(2))}</span>`;
                                 total_pro_loss[i] = pro_loss_val;
                                 $("#market_rate_" + res_data[i].id).html(parseFloat(market_rate.toFixed(5)));
                                 $("#profit_loss_" + res_data[i].id).html(pro_loss_str);
@@ -650,15 +651,15 @@ function showOrder() {
                                     quote_symbol: res_data[i].quote_symbol,
                                 },
                                 success: function (data) {
-                                    if (parseFloat(data.data.bids) == 0.0 || parseFloat(data.data.asks) == 0.0 ) {
+                                    if (parseFloat(data.data?.bids) == 0.0 || parseFloat(data.data?.asks) == 0.0 ) {
                                         console.info('0 data', data.data);
                                         return;
                                     }
                                     let pro_loss_val = 0;
-                                    let rate = data.data.rate;
+                                    let rate = data.data?.rate;
                                     // kur ta ndryshosh ndryshoje edhe tek closeOrder, closeAllOrder TradingController.php
                                     if (res_data[i].type == "sell") {
-                                      market_rate = data.data.bids * 1;
+                                      market_rate = data.data?.bids * 1;
                                     //   // pro_loss_val = (market_rate-res_data[i].open_rate)*(-10000);\
                                     //   if (kind == 'crypto') {
                                     //     pro_loss_val = units * (market_rate - open_rate);
@@ -673,7 +674,7 @@ function showOrder() {
                                         }
 
                                     } else {
-                                      market_rate = data.data.asks * 1;
+                                      market_rate = data.data?.asks * 1;
                                     //   // pro_loss_val = (market_rate-res_data[i].open_rate)*10000;
                                     //     if (kind == 'crypto') {
                                     //         pro_loss_val = units * (market_rate - open_rate);
@@ -830,12 +831,12 @@ function showOrder() {
                         if (res_data[i].pro_loss * 1 >= 0) {
                             pro_loss_str =
                                 "<font color='green'>" +
-                                res_data[i].pro_loss +
+                                parseFloat(res_data[i].pro_loss).toFixed(2) +
                                 "</font>";
                         } else {
                             pro_loss_str =
                                 "<font color='red'>" +
-                                res_data[i].pro_loss +
+                                parseFloat(res_data[i].pro_loss).toFixed(2) +
                                 "</font>";
                         }
                     }
@@ -887,8 +888,8 @@ function getMarketinfo(base_symbol, quote_symbol) {
         url: base_url + "/trading/getMarketInfo",
         data: { base_symbol: base_symbol, quote_symbol: quote_symbol },
         success: function (data) {
-            res["bids"] = data.data.bids;
-            res["asks"] = data.data.asks;
+            res["bids"] = data.data?.bids;
+            res["asks"] = data.data?.asks;
         },
         error: function (e) {
             console.log(e);
@@ -1663,7 +1664,7 @@ function updateBalance() {
             margin = parseFloat(data.margin.toFixed(2));
             balance = parseFloat(data.balance.toFixed(2));
             spread = data.spread;
-            let str = `<p class='crypt-up'>${numberWithCommas(parseFloat(data.balance.toFixed(2)))} ${data.userCurrency}</p>`;
+            let str = `<p class='crypt-up'>${data.userCurrency} ${numberWithCommas(parseFloat(data.balance.toFixed(2)))}</p>`;
             $("#balance").html(str);
             $("#user_balance").html(str);
             $("#balance_mobile").html(str);
@@ -2731,7 +2732,7 @@ function runWebSocketStock(stockData) {
 
     let dataPairs = smplStockData.map((item) => item.element.base_stock);
 
-    const ws = new WebSocket("wss://ws.eodhistoricaldata.com/ws/us-quote?api_token=63c802ccc7b595.70854189");
+    const ws = new WebSocket("wss://ws.eodhistoricaldata.com/ws/us-quote?api_token=642418fd9b7d81.59882060");
 
     ws.onopen = () => {
         const msg = { action: 'subscribe', symbols: dataPairs.join(',') };

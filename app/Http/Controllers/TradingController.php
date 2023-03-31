@@ -653,7 +653,7 @@ class TradingController extends Controller {
 
     $rate = 1;
     $close_rate = $mrtk_rate;
-    $logged_user_currency = auth()->user()->getUserCurrency();
+    $logged_user_currency = auth()->user()->getUserCurrency() || 'EUR';
 
     if ($logged_user_currency != $trade_pair[1]) {
       if ($kind == "crypto") {
