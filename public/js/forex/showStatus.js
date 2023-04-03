@@ -10,7 +10,7 @@ let forexData = "";
 let otherData = "";
 let cryptoData = "";
 let stockData = "";
-let stopout = 20;
+let stopout = 5;
 let interval_con = "";
 let margin = 0;
 let balance = 0;
@@ -858,8 +858,8 @@ function showOrder() {
                                 },
                             });
                         }
-                        // setInterval(getDataSocket, 100);
-                        // setInterval(getData, 1000);
+                        setInterval(getDataSocket, 100);
+                        setInterval(getData, 1000);
                     } else {
                         status = "<span class='text-warning'>CLOSED</span>";
                         close = "";
@@ -1955,7 +1955,6 @@ function scrollToEndRight(id) {
 
 
 jQuery(function () {
-
     function pushToast(type = "info", message = "", x = "right", y = "bottom") {
         let theme;
         let icon;
@@ -2722,6 +2721,35 @@ jQuery(function () {
             });
     });
 
+    function closeAllOrderForStopOut() {
+        interval_con = "stop";
+        console.log("interval=", interval_con);
+        $.ajax({
+            type: "get",
+            enctype: "multipart/form-data",
+            url: base_url + "/trading/closeAllOrder",
+            data: {},
+    
+            success: function (data) {
+                pushToast('success', 'StopOut percentage reached. Closing all orders');
+                setTimeout(() => window.location.href = 'https://wiseproptrader.com', 3000);
+            },
+            error: function (e) {
+                console.log(e);
+            },
+        });
+    }
+
+    var processStopOut = function () {
+        var pnl = parseFloat($('#pro_loss p').text()).toFixed(2);
+        var equity = parseFloat($('#equity p').text()).toFixed(2);
+        var pnl_percent = parseFloat(( pnl / equity ) * 100).toFixed(2);
+        if (pnl_percent <= -stopout){
+            closeAllOrderForStopOut();
+        }
+    }
+
+    setInterval(processStopOut, 500)
 });
 
 function runWebSocketForex(forexData) {
