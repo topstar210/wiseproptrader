@@ -1955,7 +1955,6 @@ function scrollToEndRight(id) {
 
 
 jQuery(function () {
-
     function pushToast(type = "info", message = "", x = "right", y = "bottom") {
         let theme;
         let icon;
