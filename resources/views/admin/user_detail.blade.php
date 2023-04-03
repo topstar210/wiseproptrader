@@ -28,7 +28,11 @@
 			<!-- END PAGE HEADER-->
             <!-- BEGIN PAGE CONTENT-->
 			<h3 class="page-title">Client Detail</h3>
-			<h3><div style="float:right; margin-right: 100px">Balance: {{$data['balance']}}</div></h3>
+			<h3><div style="float:right; margin-right: 100px">Balance: 
+			@foreach( $data['balance'] as $balance )
+				{{ $balance->currency .':'. $balance->balance }}
+			@endforeach
+		</div></h3>
 			<div class="row">
 				<div class="col-md-12">
 					<form class="form-horizontal form-row-seperated" action="#">

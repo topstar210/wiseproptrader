@@ -655,12 +655,14 @@ class AdminController extends Controller
                 return response()->json(['res' => 'ok']);
             }
         } else {
+
             $deposit_con = new Deposit_history;
             $deposit_con->amount = $amount;
             $deposit_con->currency = $currency;
             $deposit_con->user_id = $id;
             $deposit_con->mode = "Manager_updated";
             $deposit_con->save();
+
             $balance_con = new Balance;
             $balance_con->balance = $amount;
             $balance_con->margin = 0;
