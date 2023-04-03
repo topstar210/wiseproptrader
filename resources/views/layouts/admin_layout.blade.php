@@ -18,64 +18,64 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet"
         type="text/css" />
     <link
-        href="{{ asset('adminTheme/assets/global/plugins/font-awesome/css/font-awesome.min.css') }}"
+        href="{{ asset('adminTheme/assets/global/plugins/font-awesome/css/font-awesome.min.css') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/font-awesome/css/font-awesome.min.css')) }}"
         rel="stylesheet" type="text/css" />
     <link
-        href="{{ asset('adminTheme/assets/global/plugins/simple-line-icons/simple-line-icons.min.css') }}"
+        href="{{ asset('adminTheme/assets/global/plugins/simple-line-icons/simple-line-icons.min.css') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/simple-line-icons/simple-line-icons.min.css')) }}"
         rel="stylesheet" type="text/css" />
     <link
-        href="{{ asset('adminTheme/assets/global/plugins/bootstrap/css/bootstrap.min.css') }}"
+        href="{{ asset('adminTheme/assets/global/plugins/bootstrap/css/bootstrap.min.css') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/bootstrap/css/bootstrap.min.css')) }}"
         rel="stylesheet" type="text/css" />
     <link
-        href="{{ asset('adminTheme/assets/global/plugins/uniform/css/uniform.default.css') }}"
+        href="{{ asset('adminTheme/assets/global/plugins/uniform/css/uniform.default.css') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/uniform/css/uniform.default.css')) }}"
         rel="stylesheet" type="text/css" />
     <link
-        href="{{ asset('adminTheme/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}"
+        href="{{ asset('adminTheme/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css')) }}"
         rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
 
 
     <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
-    <link href="{{ asset('adminTheme/assets/global/plugins/select2/select2.css') }}"
+    <link href="{{ asset('adminTheme/assets/global/plugins/select2/select2.css') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/select2/select2.css')) }}"
         rel="stylesheet" type="text/css" />
     <link
-        href="{{ asset('adminTheme/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css') }}"
+        href="{{ asset('adminTheme/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')) }}"
         rel="stylesheet" type="text/css" />
     <link
-        href="{{ asset('adminTheme/assets/global/plugins/jquery-notific8/jquery.notific8.min.css') }}"
+        href="{{ asset('adminTheme/assets/global/plugins/jquery-notific8/jquery.notific8.min.css') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/jquery-notific8/jquery.notific8.min.css')) }}"
         rel="stylesheet" type="text/css" />
     <link
-        href="{{ asset('adminTheme/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css') }}"
+        href="{{ asset('adminTheme/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css')) }}"
         rel="stylesheet" type="text/css" />
-    <link href="{{ asset('adminTheme/assets/admin/pages/css/profile-old.css') }}"
-        rel="stylesheet" type="text/css" />
-    <link
-        href="{{ asset('adminTheme/assets/global/plugins/jquery-file-upload/blueimp-gallery/blueimp-gallery.min.css') }}"
+    <link href="{{ asset('adminTheme/assets/admin/pages/css/profile-old.css') }}?ver={{ filemtime(public_path('adminTheme/assets/admin/pages/css/profile-old.css')) }}"
         rel="stylesheet" type="text/css" />
     <link
-        href="{{ asset('adminTheme/assets/global/plugins/jquery-file-upload/css/jquery.fileupload.css') }}"
+        href="{{ asset('adminTheme/assets/global/plugins/jquery-file-upload/blueimp-gallery/blueimp-gallery.min.css') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/jquery-file-upload/blueimp-gallery/blueimp-gallery.min.css')) }}"
         rel="stylesheet" type="text/css" />
     <link
-        href="{{ asset('adminTheme/assets/global/plugins/jquery-file-upload/css/jquery.fileupload-ui.css') }}"
+        href="{{ asset('adminTheme/assets/global/plugins/jquery-file-upload/css/jquery.fileupload.css') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/jquery-file-upload/css/jquery.fileupload.css')) }}"
         rel="stylesheet" type="text/css" />
-    <link href="{{ asset('adminTheme/assets/global/plugins/bootstrap-datepicker/css/datepicker3.css') }}" rel="stylesheet" type="text/css" />
-    {{-- <link href="{{ asset('adminTheme/assets/global/plugins/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" /> --}}
-    <link href="{{ asset('adminTheme/assets/global/plugins/sweetalert2/sweetalert2.themes.bootstrap-4.min.css') }}" rel="stylesheet" type="text/css" />
+    <link
+        href="{{ asset('adminTheme/assets/global/plugins/jquery-file-upload/css/jquery.fileupload-ui.css') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/jquery-file-upload/css/jquery.fileupload-ui.css')) }}"
+        rel="stylesheet" type="text/css" />
+    <link href="{{ asset('adminTheme/assets/global/plugins/bootstrap-datepicker/css/datepicker3.css') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/bootstrap-datepicker/css/datepicker3.css')) }}" rel="stylesheet" type="text/css" />
+    {{-- <link href="{{ asset('adminTheme/assets/global/plugins/sweetalert2/sweetalert2.min.css') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/sweetalert2/sweetalert2.min.css')) }}" rel="stylesheet" type="text/css" /> --}}
+    <link href="{{ asset('adminTheme/assets/global/plugins/sweetalert2/sweetalert2.themes.bootstrap-4.min.css') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/sweetalert2/sweetalert2.themes.bootstrap-4.min.css')) }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css">
     
     <!-- END PAGE LEVEL PLUGIN STYLES -->
     <!-- BEGIN PAGE STYLES -->
     <!-- END PAGE STYLES -->
     <!-- BEGIN THEME STYLES -->
-    <link href="{{ asset('adminTheme/assets/global/css/components.css') }}"
+    <link href="{{ asset('adminTheme/assets/global/css/components.css') }}?ver={{ filemtime(public_path('adminTheme/assets/global/css/components.css')) }}"
         id="style_components" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('adminTheme/assets/global/css/plugins.css') }}" rel="stylesheet"
+    <link href="{{ asset('adminTheme/assets/global/css/plugins.css') }}?ver={{ filemtime(public_path('adminTheme/assets/global/css/plugins.css')) }}" rel="stylesheet"
         type="text/css" />
-    <link href="{{ asset('adminTheme/assets/admin/layout/css/layout.css') }}"
+    <link href="{{ asset('adminTheme/assets/admin/layout/css/layout.css') }}?ver={{ filemtime(public_path('adminTheme/assets/admin/layout/css/layout.css')) }}"
         rel="stylesheet" type="text/css" />
-    <link href="{{ asset('adminTheme/assets/admin/layout/css/themes/darkblue.css') }}"
+    <link href="{{ asset('adminTheme/assets/admin/layout/css/themes/darkblue.css') }}?ver={{ filemtime(public_path('adminTheme/assets/admin/layout/css/themes/darkblue.css')) }}"
         rel="stylesheet" type="text/css" id="style_color" />
-    <link href="{{ asset('adminTheme/assets/admin/layout/css/custom.css') }}"
+    <link href="{{ asset('adminTheme/assets/admin/layout/css/custom.css') }}?ver={{ filemtime(public_path('adminTheme/assets/admin/layout/css/custom.css')) }}"
         rel="stylesheet" type="text/css" />
     <!-- END THEME STYLES -->
     <!-- <link rel="shortcut icon" href="favicon.ico"/> -->
@@ -340,69 +340,69 @@
     </div>
     <!-- END CONTAINER -->
 
-    <script src="{{ asset('adminTheme/assets/global/plugins/jquery.min.js') }}"
+    <script src="{{ asset('adminTheme/assets/global/plugins/jquery.min.js') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/jquery.min.js')) }}"
         type="text/javascript"></script>
-    <script src="{{ asset('adminTheme/assets/global/plugins/jquery-migrate.min.js') }}"
+    <script src="{{ asset('adminTheme/assets/global/plugins/jquery-migrate.min.js') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/jquery-migrate.min.js')) }}"
         type="text/javascript"></script>
     <!-- IMPORTANT! Load jquery-ui.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
-    <script src="{{ asset('adminTheme/assets/global/plugins/jquery-ui/jquery-ui.min.js') }}"
+    <script src="{{ asset('adminTheme/assets/global/plugins/jquery-ui/jquery-ui.min.js') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/jquery-ui/jquery-ui.min.js')) }}"
         type="text/javascript"></script>
     <script
-        src="{{ asset('adminTheme/assets/global/plugins/bootstrap/js/bootstrap.min.js') }}"
+        src="{{ asset('adminTheme/assets/global/plugins/bootstrap/js/bootstrap.min.js') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/bootstrap/js/bootstrap.min.js')) }}"
         type="text/javascript"></script>
     <script
-        src="{{ asset('adminTheme/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js') }}"
+        src="{{ asset('adminTheme/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js')) }}"
         type="text/javascript"></script>
     <script
-        src="{{ asset('adminTheme/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}"
+        src="{{ asset('adminTheme/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js')) }}"
         type="text/javascript"></script>
-    <script src="{{ asset('adminTheme/assets/global/plugins/jquery.blockui.min.js') }}"
+    <script src="{{ asset('adminTheme/assets/global/plugins/jquery.blockui.min.js') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/jquery.blockui.min.js')) }}"
         type="text/javascript"></script>
-    <script src="{{ asset('adminTheme/assets/global/plugins/jquery.cokie.min.js') }}"
-        type="text/javascript"></script>
-    <script
-        src="{{ asset('adminTheme/assets/global/plugins/uniform/jquery.uniform.min.js') }}"
+    <script src="{{ asset('adminTheme/assets/global/plugins/jquery.cokie.min.js') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/jquery.cokie.min.js')) }}"
         type="text/javascript"></script>
     <script
-        src="{{ asset('adminTheme/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"
+        src="{{ asset('adminTheme/assets/global/plugins/uniform/jquery.uniform.min.js') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/uniform/jquery.uniform.min.js')) }}"
+        type="text/javascript"></script>
+    <script
+        src="{{ asset('adminTheme/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js')) }}"
         type="text/javascript"></script>
     <!-- END CORE PLUGINS -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <script src="{{ asset('adminTheme/assets/global/plugins/select2/select2.min.js') }}"
+    <script src="{{ asset('adminTheme/assets/global/plugins/select2/select2.min.js') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/select2/select2.min.js')) }}"
         type="text/javascript"></script>
     <script
-        src="{{ asset('adminTheme/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js') }}"
+        src="{{ asset('adminTheme/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js')) }}"
         type="text/javascript"></script>
     <script
-        src="{{ asset('adminTheme/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js') }}"
+        src="{{ asset('adminTheme/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js')) }}"
         type="text/javascript"></script>
     <script
-        src="{{ asset('adminTheme/assets/global/plugins/jquery-notific8/jquery.notific8.min.js') }}"
+        src="{{ asset('adminTheme/assets/global/plugins/jquery-notific8/jquery.notific8.min.js') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/jquery-notific8/jquery.notific8.min.js')) }}"
         type="text/javascript"></script>
-    <script src="{{ asset('adminTheme/assets/admin/pages/scripts/ui-notific8.js') }}"
+    <script src="{{ asset('adminTheme/assets/admin/pages/scripts/ui-notific8.js') }}?ver={{ filemtime(public_path('adminTheme/assets/admin/pages/scripts/ui-notific8.js')) }}"
         type="text/javascript"></script>
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="{{ asset('adminTheme/assets/global/scripts/metronic.js') }}"
+    <script src="{{ asset('adminTheme/assets/global/scripts/metronic.js') }}?ver={{ filemtime(public_path('adminTheme/assets/global/scripts/metronic.js')) }}"
         type="text/javascript"></script>
-    <script src="{{ asset('adminTheme/assets/admin/layout/scripts/layout.js') }}"
+    <script src="{{ asset('adminTheme/assets/admin/layout/scripts/layout.js') }}?ver={{ filemtime(public_path('adminTheme/assets/admin/layout/scripts/layout.js')) }}"
         type="text/javascript"></script>
-    <script src="{{ asset('adminTheme/assets/admin/layout/scripts/quick-sidebar.js') }}"
+    <script src="{{ asset('adminTheme/assets/admin/layout/scripts/quick-sidebar.js') }}?ver={{ filemtime(public_path('adminTheme/assets/admin/layout/scripts/quick-sidebar.js')) }}"
         type="text/javascript"></script>
-    <script src="{{ asset('adminTheme/assets/admin/layout/scripts/demo.js') }}"
+    <script src="{{ asset('adminTheme/assets/admin/layout/scripts/demo.js') }}?ver={{ filemtime(public_path('adminTheme/assets/admin/layout/scripts/demo.js')) }}"
         type="text/javascript"></script>
-    <script src="{{ asset('adminTheme/assets/admin/pages/scripts/index.js') }}"
+    <script src="{{ asset('adminTheme/assets/admin/pages/scripts/index.js') }}?ver={{ filemtime(public_path('adminTheme/assets/admin/pages/scripts/index.js')) }}"
         type="text/javascript"></script>
-    <script src="{{ asset('adminTheme/assets/admin/pages/scripts/tasks.js') }}"
+    <script src="{{ asset('adminTheme/assets/admin/pages/scripts/tasks.js') }}?ver={{ filemtime(public_path('adminTheme/assets/admin/pages/scripts/tasks.js')) }}"
         type="text/javascript"></script>
-    <script src="{{ asset('adminTheme/assets/admin/pages/scripts/table-editable.js') }}">
+    <script src="{{ asset('adminTheme/assets/admin/pages/scripts/table-editable.js') }}?ver={{ filemtime(public_path('adminTheme/assets/admin/pages/scripts/table-editable.js')) }}">
     </script>
-    <script src="{{ asset('adminTheme/assets/admin/pages/scripts/table-managed.js') }}">
+    <script src="{{ asset('adminTheme/assets/admin/pages/scripts/table-managed.js') }}?ver={{ filemtime(public_path('adminTheme/assets/admin/pages/scripts/table-managed.js')) }}">
     </script>
-    <script src="{{ asset('adminTheme/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('adminTheme/assets/global/plugins/sweetalert2/sweetalert2.all.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('adminTheme/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js')) }}" type="text/javascript"></script>
+    <script src="{{ asset('adminTheme/assets/global/plugins/sweetalert2/sweetalert2.all.min.js') }}?ver={{ filemtime(public_path('adminTheme/assets/global/plugins/sweetalert2/sweetalert2.all.min.js')) }}" type="text/javascript"></script>
 
-    <script src="{{ asset('js/admin_settings.js?v=13') }}"></script>
+    <script src="{{ asset('js/admin_settings.js') }}?ver={{ filemtime(public_path('js/admin_settings.js')) }}"></script>
     <!-- END PAGE LEVEL SCRIPTS -->
     <script>
         jQuery(document).ready(function () {

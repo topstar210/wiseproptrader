@@ -12,7 +12,7 @@
     <meta name="description" content="{{$app_settings['app_description']}}" />
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}?ver={{ filemtime(public_path('js/app.js')) }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
