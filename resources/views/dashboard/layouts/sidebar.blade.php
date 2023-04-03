@@ -5,7 +5,7 @@
     <nav id="sidebar">
         <ul class="list-unstyled components">
             <ul class="list-unstyled CTAs">
-                <li><a href="javascript::void();" class="download">New WiseProp Challenge</a></li>
+                <li><a href="{{ route('dash_wiseprop_funding') }}">New Wiseprop Funding</a></li>
             </ul>
             <p>Main Menu</p>
             <hr />

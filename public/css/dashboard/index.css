@@ -47,7 +47,7 @@
     color: #5ADBE0;
     border-color: #5ADBE0;
 }
-.btn-outline-primary:hover {
+.btn-outline-primary:hover, .v-card:hover{
     color: white;
     background: #5ADBE0;
     border-color: #5ADBE0;
@@ -75,4 +75,14 @@
 
 body.crypt-dark .form-control{
     background-color: #070707;
+}
+
+.v-card{
+    border: 1px solid #5ADBE0;
+    cursor: pointer;
+    border-radius: 50px;
+}
+
+#myTab{
+    background: transparent;
 }

@@ -38,6 +38,7 @@ Route::get('/withdraw', 'HomeController@withdrawPayment');
 Route::get('/confirm-withdraw/{confirm_id}', 'HomeController@confirmWithdrawPayment');
 
 // dashboard router
+Route::get('/dashboard/wiseprop-funding', 'Dashboard\WisepropFundingController@index')->name('dash_wiseprop_funding');
 Route::get('/dashboard/client-area', 'Dashboard\ClientAreaController@index')->name('dash_client_area');
 Route::get('/dashboard/profile', 'Dashboard\ProfileController@index')->name('dash_profile');
 route::get('/dashboard/download', 'Dashboard\IndexController@download')->name('dash_download');
